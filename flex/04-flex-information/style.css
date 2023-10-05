@@ -15,7 +15,7 @@ img {
   margin-bottom: 20px;
 }
 
-.flex-wrapper {
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
