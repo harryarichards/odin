@@ -5,9 +5,7 @@ function getComputerChoice() {
 }
 
 function playRound() {
-  let userChoice = parseInt(
-    prompt("Select your choice (0: Rock, 1: Paper, 2: Scissors)...")
-  );
+  let userChoice = 0;
   let computerChoice = getComputerChoice();
   console.log(userChoice);
   console.log(`You played ${CHOICE_MAPPING[userChoice]}.`);
