@@ -4,51 +4,35 @@ function getComputerChoice() {
   return Math.floor(Math.random() * 3);
 }
 
-function playRound() {
-  let userChoice = 0;
+var userScore = 0;
+var computerScore = 0;
+
+const btn = document.querySelector("#buttons");
+console.log(btn);
+function playRound(e) {
+  let userChoice = e.target.getAttribute("id");
+  if (userChoice === "rock"){
+    userChoice = 0;
+  } else if (userChoice === "paper") {
+    userChoice = 1;
+  } else {
+    userChoice = 2;
+  }
   let computerChoice = getComputerChoice();
-  console.log(userChoice);
-  console.log(`You played ${CHOICE_MAPPING[userChoice]}.`);
-  console.log(`Computer played ${CHOICE_MAPPING[computerChoice]}.`);
+  document.querySelector("#user").innerText = `You played ${CHOICE_MAPPING[userChoice]}.`;
+  document.querySelector("#computer").innerText = `Computer played ${CHOICE_MAPPING[computerChoice]}.`;
 
   if (userChoice === computerChoice) {
-    console.log("Draw!");
-    return 0;
   } else if (!userChoice && computerChoice === 1) {
-    return -1;
+    computerScore++;
   } else if (userChoice === 1 && computerChoice === 2) {
-    return -1;
+    computerScore++;
   } else if (userChoice === 2 && !computerChoice) {
-    return -1;
+    computerScore++;
   } else {
-    return 1;
+    userScore++;
   }
+  document.querySelector("#user-score").innerText = `User Score: ${userScore}`
+  document.querySelector("#computer-score").innerText = `Computer Score: ${computerScore}`
 }
-
-function playGame() {
-  console.log("--- NEW GAME ---");
-  let userScore = 0;
-  for (let i = 0; i < 5; i++) {
-    let outcome = playRound();
-    if (outcome > 0) {
-      console.log("You won this round!");
-    } else if (!outcome) {
-      console.log("You drew round!");
-    } else {
-      console.log("You lost this round!");
-    }
-    userScore += playRound();
-    console.log();
-  }
-
-  if (userScore > 0) {
-    console.log(`You scored ${userScore}, you won the game!`);
-  } else if (!userScore) {
-    console.log(`You scored ${userScore}, you drew the game!`);
-  } else {
-    console.log(`You scored ${userScore}, you lost the game!`);
-  }
-  console.log();
-}
-
-playGame();
+btn.addEventListener("click", playRound);
