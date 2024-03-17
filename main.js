@@ -11,7 +11,7 @@ const btn = document.querySelector("#buttons");
 console.log(btn);
 function playRound(e) {
   let userChoice = e.target.getAttribute("id");
-  if (userChoice === "rock"){
+  if (userChoice === "rock") {
     userChoice = 0;
   } else if (userChoice === "paper") {
     userChoice = 1;
@@ -19,8 +19,12 @@ function playRound(e) {
     userChoice = 2;
   }
   let computerChoice = getComputerChoice();
-  document.querySelector("#user").innerText = `You played ${CHOICE_MAPPING[userChoice]}.`;
-  document.querySelector("#computer").innerText = `Computer played ${CHOICE_MAPPING[computerChoice]}.`;
+  document.querySelector(
+    "#user"
+  ).innerText = `You played ${CHOICE_MAPPING[userChoice]}.`;
+  document.querySelector(
+    "#computer"
+  ).innerText = `Computer played ${CHOICE_MAPPING[computerChoice]}.`;
 
   if (userChoice === computerChoice) {
   } else if (!userChoice && computerChoice === 1) {
@@ -32,7 +36,9 @@ function playRound(e) {
   } else {
     userScore++;
   }
-  document.querySelector("#user-score").innerText = `User Score: ${userScore}`
-  document.querySelector("#computer-score").innerText = `Computer Score: ${computerScore}`
+  document.querySelector("#user-score").innerText = `User Score: ${userScore}`;
+  document.querySelector(
+    "#computer-score"
+  ).innerText = `Computer Score: ${computerScore}`;
 }
 btn.addEventListener("click", playRound);
